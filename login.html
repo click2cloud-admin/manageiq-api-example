@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app='loginApp'>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+
+  <script src="login.js"></script>
+  <script src="jquery.base64.min.js"></script>
+
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+</head>
+<body ng-controller="mainController">
+ <div class="container">
+   <h1>ManageIQ REST API usage example</h1>
+
+   <h3>Login:</h3>
+   <form name="login_form" ng-submit="submit_login(login, 'submit_debug')" novalidate>
+      Login:    <input ng-model="login.login"    required id=login    type=text/>
+      Password: <input ng-model="login.password" required id=password type=password/>
+      <button  class="btn btn-lg btn-primary" type=submit>Login</button>
+   </form>
+   <br/>
+
+   <h3>Submit result:</h3>
+   <textarea id="submit_debug">{{response_data | json}}</textarea>
+   <input type="text" id="auth_token" value="{{auth_token}}">
+
+   <h3>Services:</h3>
+   <form name="services_form" ng-submit="submit_services()" novalidate>
+      <button class="btn btn-lg btn-primary" type=submit>Load services</button>
+   </form>
+
+   <ul class="list-group">
+     <li class="list-group-item" ng-repeat="service in services">
+       <a href="{{service.href}}">{{service.name}}</a>
+       {{service.description}}
+     </li>
+   </ul>
+  </div>
+</body>
+</html>
